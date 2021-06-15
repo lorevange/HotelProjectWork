@@ -1,0 +1,32 @@
+<template>
+    <lightning-card>
+        <div if:false={isDone} class="slds-grid slds-grid_vertical slds-size_full slds-align_absolute-center">
+            <lightning-input 
+                class="slds-col slds-size_2-of-3 slds-m-vertical_medium slds-align_absolute-center"
+                name="PPSN"
+                maxlength="16"
+                minlength="16"
+                type="text"
+                label="Service Number"
+                onchange={onChangePPSN}></lightning-input>
+            <lightning-input 
+                class="slds-col slds-size_2-of-3 slds-m-vertical_medium slds-align_absolute-center"
+                name="subject"
+                type="text"
+                label="Subject"
+                onchange={onChangeSubj}></lightning-input>
+            <lightning-textarea
+                class="slds-col slds-size_2-of-3 slds-m-vertical_medium slds-align_absolute-center"
+                name="description"
+                type="text"
+                label="Description"
+                placeholder="Describe your problem here..."
+                onchange={onChangeDesc}></lightning-textarea>
+                <lightning-button class="slds-col slds-align_absolute-center slds-m-vertical_large" variant="brand" label="Send" if:true={isCompiled} onclick={submit}></lightning-button>
+                <lightning-button class="slds-col slds-align_absolute-center slds-m-vertical_large" variant="brand" label="Send" if:false={isCompiled} disabled></lightning-button>
+        </div>
+        <div if:true={isDone} class="slds-size_full" style="height:100px">
+            <p class="slds-align_absolute-center slds-m-top_large">Your problem has been submitted successfully!</p>
+        </div>
+        </lightning-card>
+</template>
