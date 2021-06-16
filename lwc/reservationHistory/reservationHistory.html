@@ -1,0 +1,23 @@
+<template>
+    <lightning-card>
+        <div class="slds-grid slds-gutters slds-size_full" style="height:200px">
+            <div class="slds-col slds-size_1-of-4"></div>
+            <lightning-input
+            class="slds-col slds-size_1-of-2 slds-align_absolute-center"
+            name="PPSN"
+            minlength="16"
+            maxlength="16"
+            label="Type a registered Service Number:"
+            onchange={onChangePpsn}></lightning-input>
+            <div class="slds-col slds-size_1-of-4"></div>
+        </div>
+        <lightning-button if:true={isCompiled} class="slds-col slds-align_absolute-center slds-m-bottom_small" variant="brand" label="Search" onclick={search}></lightning-button>
+        <lightning-button if:false={isCompiled} disabled class="slds-col slds-align_absolute-center slds-m-bottom_small" variant="brand" label="Search"></lightning-button>
+        <div if:true={isEmpty} class="slds-size_full slds-m-vertical_small">
+            <p style="color:red" class="slds-align_absolute-center">This guest has made no reservations or they are not registered in the system.</p>
+        </div>
+        <div if:true={showGrid} class="slds-box slds-size_11-of-12 slds-align_absolute-center slds-m-vertical_medium ombre">
+            <lightning-datatable data={reservs} columns={columns} key-field="Id"></lightning-datatable>        
+        </div>
+    </lightning-card>
+</template>
